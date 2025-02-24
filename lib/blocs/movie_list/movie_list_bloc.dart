@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:your_app/repositories/movie_repository.dart';
+import 'package:flutter_technical_test/repositories/movie_repository.dart';
 import 'movie_list_event.dart';
 import 'movie_list_state.dart';
 
