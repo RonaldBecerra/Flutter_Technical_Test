@@ -11,32 +11,32 @@ Este es un proyecto de prueba técnica en Flutter.
 
 ## Configuración del Entorno
 
-1. **Instalar Flutter y Dart**: Sigue las [instrucciones de instalación de Flutter](https://flutter.dev/docs/get-started/install).
+1. **Configurar Variables de Entorno**:
+    - Crea un archivo `.env` en la carpeta `assets` del proyecto y añade tu API Key:
+      ```
+      API_KEY=tu_api_key
+      ```
 
-2. **Instalar Android Studio**: 
+2. **Instalar Flutter y Dart**: Sigue las [instrucciones de instalación de Flutter](https://flutter.dev/docs/get-started/install).
+
+3. **Instalar Android Studio**: 
     - Descarga e instala [Android Studio](https://developer.android.com/studio).
     - Durante la instalación, asegúrate de instalar el SDK de Android y crear un dispositivo virtual para emulación.
     - Añade los plugins necesarios en Android Studio:
       - **Flutter**: [Instalación del Plugin Flutter](https://flutter.dev/docs/get-started/editor).
       - **Dart**: [Instalación del Plugin Dart](https://dart.dev/tools/dart-vm).
 
-3. **Configurar el JDK**:
+4. **Configurar el JDK**:
     - Descarga e instala [OpenJDK 11](https://adoptium.net/).
     - Configura la variable de entorno `JAVA_HOME` a la ruta de instalación del JDK:
       - Ejemplo: `C:\Program Files\Java\openlogic-openjdk-11.0.23+9-windows-x64`.
-
-4. **Configurar Variables de Entorno**:
-    - Crea un archivo `.env` en la carpeta `assets` del proyecto y añade tu API Key:
-      ```
-      API_KEY=tu_api_key
-      ```
 
 ## Clonar y Ejecutar el Proyecto
 
 1. **Clonar el Repositorio**:
     ```sh
-    git clone https://github.com/tu-usuario/flutter_technical_test.git
-    cd flutter_technical_test
+    git clone https://github.com/RonaldBecerra/Flutter_Technical_Test.git
+    cd Flutter_Technical_Test
     ```
 
 2. **Instalar Dependencias**:
