@@ -5,7 +5,6 @@ import 'package:flutter_technical_test/blocs/movie_list/movie_list_event.dart';
 import 'package:flutter_technical_test/blocs/movie_list/movie_list_state.dart';
 import 'package:flutter_technical_test/models/movie.dart';
 
-
 class FeedView extends StatelessWidget {
   const FeedView({super.key});
 
@@ -34,12 +33,21 @@ class FeedView extends StatelessWidget {
                 return GridTile(
                   child: Column(
                     children: [
-                      Image.network(
-                        'https://image.tmdb.org/t/p/w500${movie.posterPath}',
-                        fit: BoxFit.cover,
+                      Expanded(
+                        child: Image.network(
+                          'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                      Text(movie.title),
-                      Text('${movie.rating}'),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Text(movie.title, style: Theme.of(context).textTheme.titleMedium),
+                            Text('${movie.rating}%', style: Theme.of(context).textTheme.bodyMedium),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 );

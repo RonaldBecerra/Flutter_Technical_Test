@@ -1,16 +1,57 @@
-# flutter_technical_test
+# Flutter Technical Test
 
-A new Flutter project.
+Este es un proyecto de prueba técnica en Flutter.
 
-## Getting Started
+## Requisitos
 
-This project is a starting point for a Flutter application.
+- [Flutter](https://flutter.dev/docs/get-started/install)
+- [Dart](https://dart.dev/get-dart)
+- [Android Studio](https://developer.android.com/studio)
+- [JDK 11](https://adoptium.net/) - Descargar y configurar `JAVA_HOME` a `C:\Program Files\Java\openlogic-openjdk-11.0.23+9-windows-x64`
 
-A few resources to get you started if this is your first Flutter project:
+## Configuración del Entorno
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. **Instalar Flutter y Dart**: Sigue las [instrucciones de instalación de Flutter](https://flutter.dev/docs/get-started/install).
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2. **Instalar Android Studio**: 
+    - Descarga e instala [Android Studio](https://developer.android.com/studio).
+    - Durante la instalación, asegúrate de instalar el SDK de Android y crear un dispositivo virtual para emulación.
+    - Añade los plugins necesarios en Android Studio:
+      - **Flutter**: [Instalación del Plugin Flutter](https://flutter.dev/docs/get-started/editor).
+      - **Dart**: [Instalación del Plugin Dart](https://dart.dev/tools/dart-vm).
+
+3. **Configurar el JDK**:
+    - Descarga e instala [OpenJDK 11](https://adoptium.net/).
+    - Configura la variable de entorno `JAVA_HOME` a la ruta de instalación del JDK:
+      - Ejemplo: `C:\Program Files\Java\openlogic-openjdk-11.0.23+9-windows-x64`.
+
+4. **Configurar Variables de Entorno**:
+    - Crea un archivo `.env` en la carpeta `assets` del proyecto y añade tu API Key:
+      ```
+      API_KEY=tu_api_key
+      ```
+
+## Clonar y Ejecutar el Proyecto
+
+1. **Clonar el Repositorio**:
+    ```sh
+    git clone https://github.com/tu-usuario/flutter_technical_test.git
+    cd flutter_technical_test
+    ```
+
+2. **Instalar Dependencias**:
+    ```sh
+    flutter pub get
+    ```
+
+3. **Ejecutar el Proyecto**:
+    ```sh
+    flutter run
+    ```
+
+## Recursos Adicionales
+
+- [Documentación de Flutter](https://docs.flutter.dev/)
+- [Cookbook: Ejemplos Útiles de Flutter](https://docs.flutter.dev/cookbook)
+- [Codelab: Escribe tu Primera Aplicación Flutter](https://docs.flutter.dev/get-started/codelab)
+
