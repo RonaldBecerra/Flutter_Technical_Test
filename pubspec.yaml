@@ -68,6 +68,7 @@ flutter:
   assets:
     - assets/.env
     - assets/fonts/
+    - assets/icons/
 
   fonts:
     - family: BalooTamma2
