@@ -7,18 +7,21 @@ class MovieColumns extends StatelessWidget {
 
   const MovieColumns({
     required this.movies,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final double unit = MediaQuery.of(context).size.width / 15;
+    double unit = MediaQuery.of(context).size.width / 15;
 
     List<Widget> buildMovieColumn(List<Movie> movies, double topOffset) {
       return [
         SizedBox(height: topOffset),
         for (var movie in movies)
-          MovieCard(movie: movie, unit: unit),
+          Padding(
+            padding: EdgeInsets.only(bottom: unit),
+            child: MovieCard(movie: movie),
+          )
       ];
     }
 
@@ -32,15 +35,17 @@ class MovieColumns extends StatelessWidget {
       }
     }
 
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: unit),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(child: Column(children: buildMovieColumn(leftColumnMovies, 0))),
-          SizedBox(width: unit),
-          Expanded(child: Column(children: buildMovieColumn(rightColumnMovies, unit))),
-        ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: unit),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(child: Column(children: buildMovieColumn(leftColumnMovies, 0))),
+            SizedBox(width: unit),
+            Expanded(child: Column(children: buildMovieColumn(rightColumnMovies, unit))),
+          ],
+        ),
       ),
     );
   }

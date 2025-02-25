@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_technical_test/blocs/movie_list/movie_list_bloc.dart';
 import 'package:flutter_technical_test/blocs/movie_list/movie_list_event.dart';
 import 'package:flutter_technical_test/blocs/movie_list/movie_list_state.dart';
-import 'package:flutter_technical_test/models/movie.dart';
 import 'package:flutter_technical_test/views/widgets/movie_columns.dart';
 
 class FeedView extends StatelessWidget {
