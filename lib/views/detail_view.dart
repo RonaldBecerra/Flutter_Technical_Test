@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_technical_test/models/movie.dart';
+import 'package:flutter_technical_test/blocs/movie_detail/movie_detail_bloc.dart';
+import 'package:flutter_technical_test/blocs/movie_detail/movie_detail_event.dart';
+import 'package:flutter_technical_test/blocs/movie_detail/movie_detail_state.dart';
 
-class DetailView extends StatelessWidget {
+class DetailView extends StatefulWidget {
   final Movie movie;
 
   const DetailView({
@@ -10,25 +14,32 @@ class DetailView extends StatelessWidget {
   });
 
   @override
+  _DetailViewState createState() => _DetailViewState();
+}
+
+class _DetailViewState extends State<DetailView> {
+  bool hasTapped = false;
+
+  @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      // Extend the body behind the AppBar to achieve full background
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(95.0),
+        preferredSize: const Size.fromHeight(95.0),
         child: Container(
-          margin: EdgeInsets.only(
+          margin: const EdgeInsets.only(
             top: 20.0,
             bottom: 20.0,
           ),
           child: AppBar(
-            // Transparent background for the internal AppBar
             backgroundColor: Colors.transparent,
             centerTitle: true,
-            elevation: 0,  // No shadow
+            elevation: 0,
             leading: GestureDetector(
               onTap: () {
-                Navigator.of(context).pop(); // Return to previous view
+                Navigator.of(context).pop();
               },
               child: Container(
                 width: 8.0,
@@ -43,17 +54,37 @@ class DetailView extends StatelessWidget {
           ),
         ),
       ),
-      body: GestureDetector(
-        onTap: () {
-          //TODO: Use the tap to show the movie information
-        },
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: NetworkImage('https://image.tmdb.org/t/p/w500${movie.posterPath}'),
-              fit: BoxFit.cover,
-            ),
+      body: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage('https://image.tmdb.org/t/p/w500${widget.movie.posterPath}'),
+            fit: BoxFit.cover,
           ),
+        ),
+        child: hasTapped
+          ? Text(
+              "Ya tapeé",
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+              ),
+            )
+          : Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              top: 0,
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    hasTapped = true;
+                    BlocProvider.of<MovieDetailBloc>(context).add(FetchMovieDetail(widget.movie.id));
+                  });
+                },
+              ),
         ),
       ),
     );

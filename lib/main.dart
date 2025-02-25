@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'blocs/movie_detail/movie_detail_bloc.dart';
 import 'blocs/movie_list/movie_list_bloc.dart';
 import 'blocs/movie_list/movie_list_event.dart';
 import 'blocs/movie_list/movie_list_state.dart';
@@ -24,7 +25,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<MovieListBloc>(
           create: (context) => MovieListBloc(MovieRepository()),
         ),
-        // Añade otros BlocProviders aquí
+        BlocProvider<MovieDetailBloc>(
+          create: (context) => MovieDetailBloc(MovieRepository()),
+        ), // TODO: Add other BlocProviders here
       ],
       child: MaterialApp(
         title: 'Flutter Bloc Movie App',
