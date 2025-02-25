@@ -12,21 +12,40 @@ class DetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,  // Extiende el cuerpo detrás del AppBar para lograr el fondo total
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,  // Sin sombra
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {
-            Navigator.of(context).pop();  // Regresa a la vista anterior
-          },
+      // Extend the body behind the AppBar to achieve full background
+      extendBodyBehindAppBar: true,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(95.0),
+        child: Container(
+          margin: EdgeInsets.only(
+            top: 20.0,
+            bottom: 20.0,
+          ),
+          child: AppBar(
+            // Transparent background for the internal AppBar
+            backgroundColor: Colors.transparent,
+            centerTitle: true,
+            elevation: 0,  // No shadow
+            leading: GestureDetector(
+              onTap: () {
+                Navigator.of(context).pop(); // Return to previous view
+              },
+              child: Container(
+                width: 8.0,
+                height: 8.0,
+                margin: const EdgeInsets.only(left: 25.0),
+                child: const Image(
+                  image: AssetImage('assets/icons/close_icon.png'),
+                  fit: BoxFit.scaleDown,
+                ),
+              ),
+            ),
+          ),
         ),
       ),
       body: GestureDetector(
         onTap: () {
-          // Aquí puedes manejar el tap para mostrar la información de la película
-          // Haandle
+          //TODO: Use the tap to show the movie information
         },
         child: Container(
           decoration: BoxDecoration(
