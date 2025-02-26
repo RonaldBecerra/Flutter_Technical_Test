@@ -62,6 +62,7 @@ class MovieRepository {
 
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
+      print("jsonResponse = ${Actor.fromJson(jsonResponse)}");
       return Actor.fromJson(jsonResponse);
     } else {
       throw Exception('Error fetching actor details');

@@ -8,9 +8,9 @@ class FeedView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(95.0),
+        preferredSize: const Size.fromHeight(95.0),
         child: Container(
-          margin: EdgeInsets.only(
+          margin: const EdgeInsets.only(
             top: 20.0,
             bottom: 20.0,
           ),
@@ -23,8 +23,8 @@ class FeedView extends StatelessWidget {
             leading: Container(
               width: 8.0,
               height: 8.0,
-              margin: EdgeInsets.only(left: 25.0),
-              child: Image(image: AssetImage('assets/icons/hamburger_icon.png'),
+              margin: const EdgeInsets.only(left: 25.0),
+              child: const Image(image: AssetImage('assets/icons/hamburger_icon.png'),
                 fit: BoxFit.scaleDown,
               ),
             ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_technical_test/models/actor_character.dart';
 import 'package:flutter_technical_test/models/movie.dart';
 import 'package:flutter_technical_test/views/widgets/generic_card.dart';
+import 'package:flutter_technical_test/views/profile_view.dart';
 
 class ActorsRow extends StatelessWidget {
   final Movie movie;
@@ -67,8 +68,9 @@ class ActorsRow extends StatelessWidget {
                           text1: actor.name,
                           text2: actor.character,
                           onTap: () {
-                            // Acción a ejecutar al hacer tap en la tarjeta del actor
-                            print("Tapped on ${actor.name}");
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ProfileView(actorId: actor.id),
+                            ));
                           },
                         ),
                       ),
