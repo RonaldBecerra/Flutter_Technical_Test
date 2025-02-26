@@ -2,7 +2,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_technical_test/models/movie.dart';
-import 'package:flutter_technical_test/models/actor.dart';
+import 'package:flutter_technical_test/models/actor_character.dart';
+
+import '../models/actor.dart';
 
 class MovieRepository {
   final String apiKey = dotenv.env['API_KEY'] ?? '';
@@ -36,7 +38,7 @@ class MovieRepository {
     }
   }
 
-  Future<List<Actor>> fetchMovieCredits(int movieId) async {
+  Future<List<ActorCharacter>> fetchMovieCredits(int movieId) async {
     final response = await http.get(
       Uri.parse('https://api.themoviedb.org/3/movie/$movieId/credits?api_key=$apiKey'),
     );
@@ -44,11 +46,25 @@ class MovieRepository {
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
       final actors = (jsonResponse['cast'] as List)
-          .map((actorJson) => Actor.fromJson(actorJson))
+          .map((actorJson) => ActorCharacter.fromJson(actorJson))
           .toList();
       return actors;
     } else {
       throw Exception('Error fetching movie credits');
+    }
+  }
+
+  Future<Actor> fetchActorDetails(int actorId) async {
+    final response = await http.get(
+      // TODO: Bad endpoint
+      Uri.parse('https://api.themoviedb.org/3/person/$actorId?api_key=$apiKey&append_to_response=movie_credits'),
+    );
+
+    if (response.statusCode == 200) {
+      final jsonResponse = json.decode(response.body);
+      return Actor.fromJson(jsonResponse);
+    } else {
+      throw Exception('Error fetching actor details');
     }
   }
 }

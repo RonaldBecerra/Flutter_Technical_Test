@@ -19,7 +19,7 @@ class Actor {
       name: json['name'],
       profilePath: json['profile_path'] ?? '',
       biography: json['biography'] ?? '',
-      movies: (json['movie_credits'] as List).map((e) => e.toString()).toList(),
+      movies: (json['movie_credits'] as List).map((e) => e['title'].toString()).toList(),
     );
   }
 }

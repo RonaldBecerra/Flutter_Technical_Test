@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_technical_test/models/movie.dart';
-import 'package:flutter_technical_test/models/actor.dart';
+import 'package:flutter_technical_test/models/actor_character.dart';
 
 abstract class MovieDetailState extends Equatable {
   const MovieDetailState();
@@ -18,9 +18,9 @@ class MovieDetailLoading extends MovieDetailState {
 
 class MovieDetailLoaded extends MovieDetailState {
   final Movie movie;
-  final List<Actor> actors;
+  final List<ActorCharacter> actors;
 
-  const MovieDetailLoaded(this.movie, this.actors);
+  const MovieDetailLoaded(this.movie, [this.actors = const []]);
 
   @override
   List<Object> get props => [movie, actors];

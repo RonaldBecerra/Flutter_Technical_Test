@@ -4,6 +4,7 @@ import 'package:flutter_technical_test/models/movie.dart';
 import 'package:flutter_technical_test/blocs/movie_detail/movie_detail_bloc.dart';
 import 'package:flutter_technical_test/blocs/movie_detail/movie_detail_event.dart';
 import 'package:flutter_technical_test/blocs/movie_detail/movie_detail_state.dart';
+import 'package:flutter_technical_test/views/widgets/load_movie_details.dart';
 
 class DetailView extends StatefulWidget {
   final Movie movie;
@@ -28,26 +29,29 @@ class _DetailViewState extends State<DetailView> {
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(95.0),
-        child: Container(
-          margin: const EdgeInsets.only(
-            top: 20.0,
-            bottom: 20.0,
-          ),
-          child: AppBar(
-            backgroundColor: Colors.transparent,
-            centerTitle: true,
-            elevation: 0,
-            leading: GestureDetector(
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-              child: Container(
-                width: 8.0,
-                height: 8.0,
-                margin: const EdgeInsets.only(left: 25.0),
-                child: const Image(
-                  image: AssetImage('assets/icons/close_icon.png'),
-                  fit: BoxFit.scaleDown,
+        child: InkWell(
+          onTap: _auxTapView,
+          child: Container(
+            margin: const EdgeInsets.only(
+              top: 20.0,
+              bottom: 20.0,
+            ),
+            child: AppBar(
+              backgroundColor: Colors.transparent,
+              centerTitle: true,
+              elevation: 0,
+              leading: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+                child: Container(
+                  width: 8.0,
+                  height: 8.0,
+                  margin: const EdgeInsets.only(left: 25.0),
+                  child: const Image(
+                    image: AssetImage('assets/icons/close_icon.png'),
+                    fit: BoxFit.scaleDown,
+                  ),
                 ),
               ),
             ),
@@ -64,29 +68,18 @@ class _DetailViewState extends State<DetailView> {
           ),
         ),
         child: hasTapped
-          ? Text(
-              "Ya tapeé",
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 30,
-              ),
-            )
-          : Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              top: 0,
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    hasTapped = true;
-                    BlocProvider.of<MovieDetailBloc>(context).add(FetchMovieDetail(widget.movie.id));
-                  });
-                },
-              ),
-        ),
+          ? LoadMovieDetails(movie: widget.movie)
+          : InkWell(onTap: _auxTapView),
       ),
     );
+  }
+
+  _auxTapView(){
+    // This functionality was separated here because the user could tap either
+    // the invisible appBar or the rest of the screen.
+    setState(() {
+      hasTapped = true;
+      BlocProvider.of<MovieDetailBloc>(context).add(FetchMovieDetail(widget.movie.id));
+    });
   }
 }

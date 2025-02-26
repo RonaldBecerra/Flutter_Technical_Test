@@ -11,11 +11,10 @@ Este es un proyecto de prueba técnica en Flutter.
 
 ## Configuración del Entorno
 
-1. **Configurar Variables de Entorno**:
-    - Crea un archivo `.env` en la carpeta `assets` del proyecto y añade tu API Key:
-      ```
-      API_KEY=tu_api_key
-      ```
+1. **Configurar el JDK**:
+    - Descarga e instala [OpenJDK 11](https://adoptium.net/).
+    - Configura la variable de entorno `JAVA_HOME` a la ruta de instalación del JDK:
+      - Ejemplo: `C:\Program Files\Java\openlogic-openjdk-11.0.23+9-windows-x64`.
 
 2. **Instalar Flutter y Dart**: Sigue las [instrucciones de instalación de Flutter](https://flutter.dev/docs/get-started/install).
 
@@ -26,11 +25,6 @@ Este es un proyecto de prueba técnica en Flutter.
       - **Flutter**: [Instalación del Plugin Flutter](https://flutter.dev/docs/get-started/editor).
       - **Dart**: [Instalación del Plugin Dart](https://dart.dev/tools/dart-vm).
 
-4. **Configurar el JDK**:
-    - Descarga e instala [OpenJDK 11](https://adoptium.net/).
-    - Configura la variable de entorno `JAVA_HOME` a la ruta de instalación del JDK:
-      - Ejemplo: `C:\Program Files\Java\openlogic-openjdk-11.0.23+9-windows-x64`.
-
 ## Clonar y Ejecutar el Proyecto
 
 1. **Clonar el Repositorio**:
@@ -38,6 +32,13 @@ Este es un proyecto de prueba técnica en Flutter.
     git clone https://github.com/RonaldBecerra/Flutter_Technical_Test.git
     cd Flutter_Technical_Test
     ```
+
+2. **Configurar Variable de Entorno**:
+    - Crea un archivo `.env` en la carpeta `assets` del proyecto y añade tu API Key:
+      ```
+      API_KEY=tu_api_key
+      ```
+    - Ejemplo: API_KEY=bf123456a
 
 2. **Instalar Dependencias**:
     ```sh
@@ -48,6 +49,9 @@ Este es un proyecto de prueba técnica en Flutter.
     ```sh
     flutter run
     ```
+
+    - Normalmente pide el navegador en el que se va a emular (Chrome, Edge).
+    - También se puede abrir el proyecto en Android Studio y ejecutarlo con el botón RUN de la barra de herramientas superior.
 
 ## Recursos Adicionales
 
