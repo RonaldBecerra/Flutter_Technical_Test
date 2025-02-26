@@ -4,6 +4,7 @@ import 'package:flutter_technical_test/blocs/user_profile/user_profile_bloc.dart
 import 'package:flutter_technical_test/blocs/user_profile/user_profile_event.dart';
 import 'package:flutter_technical_test/blocs/user_profile/user_profile_state.dart';
 import 'package:flutter_technical_test/models/actor.dart';
+import 'package:flutter_technical_test/views/widgets/movie_columns.dart';
 
 class ProfileView extends StatelessWidget {
   final int actorId;
@@ -98,7 +99,7 @@ class ActorProfile extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 26,
-                  backgroundImage: NetworkImage('https://es.web.img3.acsta.net/c_310_420/pictures/16/04/26/10/00/472541.jpg'),
+                  backgroundImage: NetworkImage('https://image.tmdb.org/t/p/w500${actor.profilePath}'),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
@@ -106,7 +107,7 @@ class ActorProfile extends StatelessWidget {
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                          text: 'Tom Hanks\n',
+                          text: '${actor.name}\n',
                           style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.w800,
                             fontSize: 19,
@@ -114,7 +115,7 @@ class ActorProfile extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: 'Tom Hanks es un actor y cineasta estadounidense. Conocido por sus roles tanto cómicos como dramáticos, Doe es una de las estrellas de cine más populares y reconocidas a nivel mundial.', // Biografía inventada
+                          text: actor.biography, // Biografía inventada
                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontSize: 10,
                             height: 1.4,
@@ -137,12 +138,7 @@ class ActorProfile extends StatelessWidget {
           ),
           // List of movies
           const SizedBox(height: 16),
-          Column(
-            children: List.generate(5, (index) => ListTile(
-              leading: Icon(Icons.movie),
-              title: Text('Película ${index + 1}'),
-            )),
-          ),
+          MovieColumns(movies: actor.movies),
         ],
       ),
     );

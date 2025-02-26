@@ -1,9 +1,11 @@
+import 'movie.dart';
+
 class Actor {
   final int id;
   final String name;
   final String profilePath;
   final String biography;
-  final List<String> movies;
+  final List<Movie> movies;
 
   Actor({
     required this.id,
@@ -19,7 +21,9 @@ class Actor {
       name: json['name'],
       profilePath: json['profile_path'] ?? '',
       biography: json['biography'] ?? '',
-      movies: (json['movie_credits'] as List).map((e) => e['title'].toString()).toList(),
+      movies: (json['movie_credits']['cast'] as List)
+          .map((movieJson) => Movie.fromJson(movieJson))
+          .toList(),
     );
   }
 }

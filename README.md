@@ -52,10 +52,3 @@ Este es un proyecto de prueba técnica en Flutter.
 
     - Normalmente pide el navegador en el que se va a emular (Chrome, Edge).
     - También se puede abrir el proyecto en Android Studio y ejecutarlo con el botón RUN de la barra de herramientas superior.
-
-## Recursos Adicionales
-
-- [Documentación de Flutter](https://docs.flutter.dev/)
-- [Cookbook: Ejemplos Útiles de Flutter](https://docs.flutter.dev/cookbook)
-- [Codelab: Escribe tu Primera Aplicación Flutter](https://docs.flutter.dev/get-started/codelab)
-
