@@ -16,5 +16,9 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
         emit(UserProfileError(e.toString()));
       }
     });
+
+    on<ResetUserProfile>((event, emit) {
+      emit(UserProfileInitial());
+    });
   }
 }

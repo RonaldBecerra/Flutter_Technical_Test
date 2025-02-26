@@ -12,3 +12,8 @@ class FetchUserProfile extends UserProfileEvent {
   @override
   List<Object> get props => [actorId];
 }
+
+class ResetUserProfile extends UserProfileEvent {
+  @override
+  List<Object> get props => [];
+}

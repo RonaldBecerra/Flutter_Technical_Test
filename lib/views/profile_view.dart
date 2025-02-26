@@ -51,11 +51,15 @@ class ProfileView extends StatelessWidget {
           ),
         ),
       ),
-      body: _loadActorProfile(context)
+      body: _loadActorProfile(context),
     );
   }
 
   _loadActorProfile(BuildContext context){
+    final userProfileBloc = context.read<UserProfileBloc>();
+    userProfileBloc.add(ResetUserProfile());
+    userProfileBloc.add(FetchUserProfile(actorId));
+
     return BlocBuilder<UserProfileBloc, UserProfileState>(
       builder: (context, state) {
         if (state is UserProfileInitial) {
