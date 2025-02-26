@@ -41,6 +41,7 @@ class GenericCard extends StatelessWidget {
       paddingTop = 6;
       paddingBottom = 10;
     }
+
     return GestureDetector(
       onTap: onTap,
       child: Stack(
@@ -51,6 +52,11 @@ class GenericCard extends StatelessWidget {
               imgSrc,
               fit: BoxFit.cover,
               width: double.infinity,
+              errorBuilder: (BuildContext context,
+                Object error,
+                StackTrace? stackTrace){
+                return Image.asset('assets/icons/error_icon.png');
+              },
             ),
           ),
           Positioned(
