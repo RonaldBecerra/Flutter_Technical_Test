@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_technical_test/models/movie.dart';
-import 'package:flutter_technical_test/views/widgets/movie_card.dart';
+import 'package:flutter_technical_test/views/widgets/generic_card.dart';
+import 'package:flutter_technical_test/views/detail_view.dart';
 
 class MovieColumns extends StatelessWidget {
   final List<Movie> movies;
@@ -20,7 +21,17 @@ class MovieColumns extends StatelessWidget {
         for (var movie in movies)
           Padding(
             padding: EdgeInsets.only(bottom: unit),
-            child: MovieCard(movie: movie),
+            child: GenericCard(
+              kind: 0,
+              imgSrc: 'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+              text1: movie.title,
+              text2: '${movie.rating}% User Score',
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => DetailView(movie: movie),
+                ));
+              },
+            )
           )
       ];
     }
