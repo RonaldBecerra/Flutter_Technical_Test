@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:flutter_technical_test/models/movie.dart';
 import 'package:flutter_technical_test/views/widgets/generic_card.dart';
 import 'package:flutter_technical_test/views/detail_view.dart';
@@ -27,9 +28,12 @@ class MovieColumns extends StatelessWidget {
               text1: movie.title,
               text2: '${movie.rating}% User Score',
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => DetailView(movie: movie),
-                ));
+                Navigator.of(context).push(
+                  PageTransition(
+                    type: PageTransitionType.topToBottom,
+                    child: DetailView(movie: movie),
+                  ),
+                );
               },
             )
           )

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:flutter_technical_test/models/actor_character.dart';
 import 'package:flutter_technical_test/models/movie.dart';
 import 'package:flutter_technical_test/views/widgets/generic_card.dart';
@@ -68,9 +69,12 @@ class ActorsRow extends StatelessWidget {
                           text1: actor.name,
                           text2: actor.character,
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ProfileView(actorId: actor.id),
-                            ));
+                            Navigator.of(context).push(
+                              PageTransition(
+                                type: PageTransitionType.fade,
+                                child: ProfileView(actorId: actor.id),
+                              ),
+                            );
                           },
                         ),
                       ),
