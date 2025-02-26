@@ -37,9 +37,12 @@ class ProfileView extends StatelessWidget {
                 margin: const EdgeInsets.only(left: 25.0),
                 child: RotatedBox(
                   quarterTurns: 1,
-                  child: const Image(
-                    image: AssetImage('assets/icons/down_icon.png'),
-                    fit: BoxFit.scaleDown,
+                  child: Transform.scale(
+                    scale: 0.9,
+                    child: const Image(
+                      image: AssetImage('assets/icons/down_icon.png'),
+                      fit: BoxFit.scaleDown,
+                    ),
                   ),
                 ),
               ),

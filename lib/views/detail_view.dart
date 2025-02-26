@@ -48,9 +48,12 @@ class _DetailViewState extends State<DetailView> {
                   width: 8.0,
                   height: 8.0,
                   margin: const EdgeInsets.only(left: 25.0),
-                  child: const Image(
-                    image: AssetImage('assets/icons/close_icon.png'),
-                    fit: BoxFit.scaleDown,
+                  child: Transform.scale(
+                    scale: 0.9,
+                    child: const Image(
+                      image: AssetImage('assets/icons/close_icon.png'),
+                      fit: BoxFit.scaleDown,
+                    ),
                   ),
                 ),
               ),
