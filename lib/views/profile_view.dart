@@ -56,6 +56,9 @@ class ProfileView extends StatelessWidget {
   }
 
   _loadActorProfile(BuildContext context){
+    // The next three lines were added to avoid a problem that it only loaded
+    // the information of an actor, and then it didn't load new info for other
+    // actors; always kept the previous info.
     final userProfileBloc = context.read<UserProfileBloc>();
     userProfileBloc.add(ResetUserProfile());
     userProfileBloc.add(FetchUserProfile(actorId));
@@ -85,9 +88,6 @@ class ActorProfile extends StatelessWidget {
     required this.actor,
     super.key
   });
-  /*
-  // TODO: Delete
-  const ActorProfile({super.key});*/
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +97,7 @@ class ActorProfile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 2.2),
+            padding: const EdgeInsets.only(left: 2.2),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -119,7 +119,7 @@ class ActorProfile extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: actor.biography, // Biografía inventada
+                          text: actor.biography,
                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontSize: 10,
                             height: 1.4,
@@ -133,7 +133,7 @@ class ActorProfile extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 22),
-          Text(
+          const Text(
             'Casted on',
             style: TextStyle(
               fontSize: 28,

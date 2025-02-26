@@ -13,8 +13,8 @@ class ActorCharacter {
 
   factory ActorCharacter.fromJson(Map<String, dynamic> json) {
     return ActorCharacter(
-      id: json['id'],
-      name: json['name'],
+      id: json['id'] ?? 0,
+      name: json['name'] ?? 'Unknown',
       profilePath: json['profile_path'] ?? '',
       character: json['character'] ?? '',
     );

@@ -16,14 +16,19 @@ class Actor {
   });
 
   factory Actor.fromJson(Map<String, dynamic> json) {
-    return Actor(
-      id: json['id'],
-      name: json['name'],
-      profilePath: json['profile_path'] ?? '',
-      biography: json['biography'] ?? '',
-      movies: (json['movie_credits']['cast'] as List)
+    List<Movie> moviesList = [];
+    if (json['movie_credits'] != null && json['movie_credits']['cast'] != null) {
+      moviesList = (json['movie_credits']['cast'] as List)
           .map((movieJson) => Movie.fromJson(movieJson))
-          .toList(),
+          .toList();
+    }
+
+    return Actor(
+      id: json['id'] ?? 0,
+      name: json['name'] ?? 'Unknown',
+      profilePath: json['profile_path'] ?? '',
+      biography: json['biography'] ?? 'No biography available.',
+      movies: moviesList,
     );
   }
 }

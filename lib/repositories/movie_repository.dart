@@ -58,11 +58,14 @@ class MovieRepository {
     final response = await http.get(
       Uri.parse('https://api.themoviedb.org/3/person/$actorId?api_key=$apiKey&append_to_response=movie_credits'),
     );
-
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
-      Actor actor = Actor.fromJson(jsonResponse);
-      return Actor.fromJson(jsonResponse);
+      try {
+        Actor actor = Actor.fromJson(jsonResponse);
+        return actor;
+      } catch (e) {
+        throw Exception('Error parsing actor details');
+      }
     } else {
       throw Exception('Error fetching actor details');
     }
