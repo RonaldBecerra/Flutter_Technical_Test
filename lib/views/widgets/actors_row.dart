@@ -71,7 +71,9 @@ class ActorsRow extends StatelessWidget {
                           onTap: () {
                             Navigator.of(context).push(
                               PageTransition(
-                                type: PageTransitionType.fade,
+                                type: PageTransitionType.rotate,
+                                alignment: Alignment.center,
+                                duration: const Duration(milliseconds: 600),
                                 child: ProfileView(actorId: actor.id),
                               ),
                             );

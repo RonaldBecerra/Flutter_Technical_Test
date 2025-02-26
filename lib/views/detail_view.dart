@@ -4,7 +4,7 @@ import 'package:flutter_technical_test/models/movie.dart';
 import 'package:flutter_technical_test/blocs/movie_detail/movie_detail_bloc.dart';
 import 'package:flutter_technical_test/blocs/movie_detail/movie_detail_event.dart';
 import 'package:flutter_technical_test/blocs/movie_detail/movie_detail_state.dart';
-import 'package:flutter_technical_test/views/widgets/load_movie_details.dart';
+import 'package:flutter_technical_test/views/widgets/actors_row.dart';
 
 class DetailView extends StatefulWidget {
   final Movie movie;
@@ -68,7 +68,7 @@ class _DetailViewState extends State<DetailView> {
           ),
         ),
         child: hasTapped
-          ? LoadMovieDetails(movie: widget.movie)
+          ? _loadMovieDetails(context, widget.movie)
           : InkWell(onTap: _auxTapView),
       ),
     );
@@ -81,5 +81,24 @@ class _DetailViewState extends State<DetailView> {
       hasTapped = true;
       BlocProvider.of<MovieDetailBloc>(context).add(FetchMovieDetail(widget.movie.id));
     });
+  }
+
+  _loadMovieDetails(BuildContext context, Movie movie){
+    return BlocBuilder<MovieDetailBloc, MovieDetailState>(
+      builder: (context, state) {
+        if (state is MovieDetailInitial) {
+          context.read<MovieDetailBloc>().add(FetchMovieDetail(movie.id));
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (state is MovieDetailLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is MovieDetailLoaded) {
+          return ActorsRow(movie: movie, actors: state.actors);
+        } else if (state is MovieDetailError) {
+          return Center(child: Text(state.error));
+        }
+        return const SizedBox.shrink();
+      }
+    );
   }
 }

@@ -8,17 +8,19 @@ import 'package:flutter_technical_test/models/actor.dart';
 class ProfileView extends StatelessWidget {
   final int actorId;
 
-  const ProfileView({required this.actorId, super.key});
+  const ProfileView({
+    required this.actorId,
+    super.key
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(95.0),
+        preferredSize: const Size.fromHeight(65.0),
         child: Container(
           margin: const EdgeInsets.only(
             top: 20.0,
-            bottom: 20.0,
           ),
           color: Colors.white,  // White background for the header
           child: AppBar(
@@ -33,38 +35,52 @@ class ProfileView extends StatelessWidget {
                 width: 8.0,
                 height: 8.0,
                 margin: const EdgeInsets.only(left: 25.0),
-                child: const Image(
-                  image: AssetImage('assets/icons/down_icon.png'),
-                  fit: BoxFit.scaleDown,
+                child: RotatedBox(
+                  quarterTurns: 1,
+                  child: const Image(
+                    image: AssetImage('assets/icons/down_icon.png'),
+                    fit: BoxFit.scaleDown,
+                  ),
                 ),
               ),
             ),
           ),
         ),
       ),
-      body: BlocBuilder<UserProfileBloc, UserProfileState>(
-        builder: (context, state) {
-          if (state is UserProfileInitial) {
-            context.read<UserProfileBloc>().add(FetchUserProfile(actorId));
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is UserProfileLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is UserProfileLoaded) {
-            return ActorProfile(actor: state.actor);
-          } else if (state is UserProfileError) {
-            return Center(child: Text(state.error));
-          }
-          return const SizedBox.shrink();
-        },
-      ),
+      body: _loadActorProfile(context)
     );
+  }
+
+  _loadActorProfile(BuildContext context){
+    return ActorProfile();
+    /*return BlocBuilder<UserProfileBloc, UserProfileState>(
+      builder: (context, state) {
+        if (state is UserProfileInitial) {
+          context.read<UserProfileBloc>().add(FetchUserProfile(actorId));
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is UserProfileLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is UserProfileLoaded) {
+          return ActorProfile(actor: state.actor);
+        } else if (state is UserProfileError) {
+          return Center(child: Text(state.error));
+        }
+        return const SizedBox.shrink();
+      },
+    );*/
   }
 }
 
 class ActorProfile extends StatelessWidget {
-  final Actor actor;
+  /*final Actor actor;
 
-  const ActorProfile({required this.actor, super.key});
+  const ActorProfile({
+    required this.actor,
+    super.key
+  });
+  */
+  // TODO: Delete
+  const ActorProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -73,40 +89,57 @@ class ActorProfile extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(
-            child: CircleAvatar(
-              radius: 80,
-              backgroundImage: NetworkImage('https://image.tmdb.org/t/p/w500${actor.profilePath}'),
+          Padding(
+            padding: EdgeInsets.only(left: 2.2),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  radius: 26,
+                  backgroundImage: NetworkImage('https://es.web.img3.acsta.net/c_310_420/pictures/16/04/26/10/00/472541.jpg'),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: RichText(
+                    text: TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 'Tom Hanks\n',
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.w800,
+                            fontSize: 19,
+                            height: 1.3,
+                          ),
+                        ),
+                        TextSpan(
+                          text: 'Tom Hanks es un actor y cineasta estadounidense. Conocido por sus roles tanto cómicos como dramáticos, Doe es una de las estrellas de cine más populares y reconocidas a nivel mundial.', // Biografía inventada
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontSize: 10,
+                            height: 1.4,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 16),
-          Center(
-            child: Text(
-              actor.name,
-              style: Theme.of(context).textTheme.headline5,
+          const SizedBox(height: 22),
+          Text(
+            'Casted on',
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.w800,
             ),
           ),
+          // List of movies
           const SizedBox(height: 16),
-          Text(
-            "Biography",
-            style: Theme.of(context).textTheme.headline6,
-          ),
-          const SizedBox(height: 8),
-          Text(
-            actor.biography.isNotEmpty ? actor.biography : "No biography available.",
-          ),
-          const SizedBox(height: 16),
-          Text(
-            "Movies",
-            style: Theme.of(context).textTheme.headline6,
-          ),
-          const SizedBox(height: 8),
           Column(
-            children: actor.movies
-                .map((movie) => ListTile(
-              title: Text(movie),
-            ))
-                .toList(),
+            children: List.generate(5, (index) => ListTile(
+              leading: Icon(Icons.movie),
+              title: Text('Película ${index + 1}'),
+            )),
           ),
         ],
       ),
