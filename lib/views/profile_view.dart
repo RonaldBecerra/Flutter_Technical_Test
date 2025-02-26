@@ -55,8 +55,7 @@ class ProfileView extends StatelessWidget {
   }
 
   _loadActorProfile(BuildContext context){
-    return ActorProfile();
-    /*return BlocBuilder<UserProfileBloc, UserProfileState>(
+    return BlocBuilder<UserProfileBloc, UserProfileState>(
       builder: (context, state) {
         if (state is UserProfileInitial) {
           context.read<UserProfileBloc>().add(FetchUserProfile(actorId));
@@ -70,20 +69,20 @@ class ProfileView extends StatelessWidget {
         }
         return const SizedBox.shrink();
       },
-    );*/
+    );
   }
 }
 
 class ActorProfile extends StatelessWidget {
-  /*final Actor actor;
+  final Actor actor;
 
   const ActorProfile({
     required this.actor,
     super.key
   });
-  */
+  /*
   // TODO: Delete
-  const ActorProfile({super.key});
+  const ActorProfile({super.key});*/
 
   @override
   Widget build(BuildContext context) {

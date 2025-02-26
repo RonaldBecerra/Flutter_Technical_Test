@@ -60,8 +60,12 @@ class MovieRepository {
       Uri.parse('https://api.themoviedb.org/3/person/$actorId?api_key=$apiKey&append_to_response=movie_credits'),
     );
 
+    print("Paso 1");
     if (response.statusCode == 200) {
+      print("Paso 2");
+      print("\n\n\nResponse.body = ${response.body}");
       final jsonResponse = json.decode(response.body);
+      print("Paso 3");
       print("jsonResponse = ${Actor.fromJson(jsonResponse)}");
       return Actor.fromJson(jsonResponse);
     } else {
