@@ -20,7 +20,7 @@ class MovieDetailLoaded extends MovieDetailState {
   final Movie movie;
   final List<ActorCharacter> actors;
 
-  const MovieDetailLoaded(this.movie, [this.actors = const []]);
+  const MovieDetailLoaded(this.movie, this.actors);
 
   @override
   List<Object> get props => [movie, actors];
