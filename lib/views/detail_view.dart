@@ -61,18 +61,25 @@ class _DetailViewState extends State<DetailView> {
           ),
         ),
       ),
-      body: Container(
-        width: width,
-        height: height,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage('https://image.tmdb.org/t/p/w500${widget.movie.posterPath}'),
-            fit: BoxFit.cover,
+      body: Stack(
+        children: [
+          Container(
+            width: width,
+            height: height,
+            child: Image.network(
+              'https://image.tmdb.org/t/p/w500${widget.movie.posterPath}',
+              fit: BoxFit.cover,
+              width: double.infinity,
+              errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                return Image.asset('assets/icons/error_icon.png', fit: BoxFit.cover, width: double.infinity);
+              },
+            ),
           ),
-        ),
-        child: hasTapped
-          ? _loadMovieDetails(context, widget.movie)
-          : InkWell(onTap: _auxTapView),
+          if (hasTapped)
+            _loadMovieDetails(context, widget.movie)
+          else
+            InkWell(onTap: _auxTapView),
+        ],
       ),
     );
   }
